@@ -47,7 +47,11 @@ def avatar(text='', lang='en-US'):
                 .snowflake {{
                     position: absolute;
                     top: -10px;
-                    font-size: 24px; /* Tamaño de la hojuela de nieve */
+                    width: 10px;
+                    height: 10px;
+                    background: white;
+                    border-radius: 50%;
+                    opacity: 0.8;
                     animation: fall linear infinite;
                     z-index: 2;
                 }}
@@ -74,7 +78,7 @@ def avatar(text='', lang='en-US'):
                     var utterance = new SpeechSynthesisUtterance(texto);
                     utterance.lang = "{lang}"; // Configurar el idioma deseado
                     utterance.onstart = function(event) {{
-                        setAnimation('speakAnimation', texto.length / 10, 10); // Ajustar duración basado en el texto
+                        setAnimation('speakAnimation', 2, 10); // Aquí 2 es la duración en segundos y 10 es el número de steps
                     }};
                     utterance.onend = function(event) {{
                         setTimeout(() => {{ setAnimation('waitingAnimation', 3, 3); }}, 500);
@@ -85,9 +89,10 @@ def avatar(text='', lang='en-US'):
                     function createSnowflake() {{
                         var snowflake = document.createElement("div");
                         snowflake.classList.add("snowflake");
-                        snowflake.textContent = '❄️'; // Usar emoji de hojuela de nieve
                         snowflake.style.left = Math.random() * 100 + "vw";
                         snowflake.style.animationDuration = (Math.random() * 5 + 5) + "s";
+                        snowflake.style.width = (Math.random() * 5 + 5) + "px";
+                        snowflake.style.height = snowflake.style.width;
                         document.getElementById("snowflakes").appendChild(snowflake);
 
                         // Eliminar copo de nieve después de que caiga
