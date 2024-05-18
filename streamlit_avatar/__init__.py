@@ -31,7 +31,7 @@ def avatar(text='',lang='en-US'):
                     width: 150px;
                     height: 150px;
                     background-size: cover;
-                    background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/robot1.png');
+                    background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_1.png');
                 }}
                 @keyframes speakAnimation {{
                     {keyframes}
