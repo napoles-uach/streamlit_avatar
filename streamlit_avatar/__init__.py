@@ -8,9 +8,9 @@ def avatar(text='',lang='en-US'):
         texto_usuario = text
 
         # Generación de los keyframes para la animación CSS.
-        keyframes = "".join([f"{i*2}% {{background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_{i}.png');}}\n" for i in range(2)])
+       # keyframes = "".join([f"{i*2}% {{background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_{i}.png');}}\n" for i in range(2)])
 
-       # keyframes = "".join([f"{i*10}% {{background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/robot{i+1}.png');}}\n" for i in range(10)])
+        keyframes = "".join([f"{i*10}% {{background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/robot{i+1}.png');}}\n" for i in range(10)])
 
         html_str = f"""
         <html>
@@ -31,7 +31,7 @@ def avatar(text='',lang='en-US'):
                     width: 150px;
                     height: 150px;
                     background-size: cover;
-                    background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_1.png');
+                    background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/robot1.png');
                 }}
                 @keyframes speakAnimation {{
                     {keyframes}
