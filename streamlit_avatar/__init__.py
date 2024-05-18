@@ -7,9 +7,9 @@ def avatar(text='', lang='en-US'):
 
         # Generación de los keyframes para la animación CSS.
         keyframes_waiting = """
-            0% { background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_0.png'); }
+            0% { background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_3silence.png'); }
             50% { background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_1.png'); }
-            100% { background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_0.png'); }
+            100% { background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_closed_eyes.png'); }
         """
 
         keyframes_speaking = "".join([f"{i*10}% {{background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_{i}.png');}}\n" for i in range(10)])
