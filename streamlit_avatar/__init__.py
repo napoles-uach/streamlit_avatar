@@ -50,14 +50,21 @@ def avatar(text='', lang='en-US'):
                 document.addEventListener('DOMContentLoaded', (event) => {{
                     var avatar = document.getElementById("avatar");
 
+                    function setAnimation(animationName) {{
+                        avatar.style.animation = 'none'; // Detener la animación actual
+                        requestAnimationFrame(() => {{
+                            avatar.style.animation = `${{animationName}} 2s steps(5, end) infinite`;
+                        }});
+                    }}
+
                     var texto = `{texto_usuario}`;
                     var utterance = new SpeechSynthesisUtterance(texto);
                     utterance.lang = "{lang}"; // Configurar el idioma deseado
                     utterance.onstart = function(event) {{
-                        avatar.style.animation = "speakAnimation 2s steps(5, end) infinite";
+                        setAnimation('speakAnimation');
                     }};
                     utterance.onend = function(event) {{
-                        setTimeout(() => {{ avatar.style.animation = "waitingAnimation 2s steps(2, end) infinite"; }}, 500);
+                        setTimeout(() => {{ setAnimation('waitingAnimation'); }}, 500);
                     }};
                     speechSynthesis.speak(utterance);
                 }});
@@ -70,8 +77,3 @@ def avatar(text='', lang='en-US'):
         components.html(html_str, height=300)
     except Exception as e:
         st.error(f"An error occurred: {e}")
-
-
-        components.html(html_str, height=300)
-    except:
-        pass
