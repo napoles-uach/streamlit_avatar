@@ -81,7 +81,7 @@ def avatar(text='', lang='en-US'):
                         setAnimation('speakAnimation', 2, 10);
                     }};
                     utterance.onend = function(event) {{
-                        setTimeout(() => {{ setAnimation('waitingAnimation', 2, 2); }}, 500);
+                        setTimeout(() => {{ setAnimation('waitingAnimation', 2, 2); }}, 100);
                     }};
                     speechSynthesis.speak(utterance);
 
