@@ -52,11 +52,11 @@ def avatar(text='', lang='en-US'):
                     background: white;
                     border-radius: 50%;
                     opacity: 0.8;
-                    animation: fall 10s linear infinite;
+                    animation: fall linear infinite;
                 }}
                 @keyframes fall {{
-                    0% {{ transform: translateY(0); }}
-                    100% {{ transform: translateY(100vh); }}
+                    0% {{ transform: translateY(0); opacity: 0.8; }}
+                    100% {{ transform: translateY(100vh); opacity: 0.2; }}
                 }}
             </style>
         </head>
@@ -90,16 +90,18 @@ def avatar(text='', lang='en-US'):
                         snowflake.classList.add("snowflake");
                         snowflake.style.left = Math.random() * 100 + "vw";
                         snowflake.style.animationDuration = (Math.random() * 5 + 5) + "s";
+                        snowflake.style.width = (Math.random() * 5 + 5) + "px";
+                        snowflake.style.height = snowflake.style.width;
                         document.getElementById("snowflakes").appendChild(snowflake);
 
                         // Eliminar copo de nieve después de que caiga
                         setTimeout(() => {{
                             snowflake.remove();
-                        }}, 10000);
+                        }}, parseFloat(snowflake.style.animationDuration) * 1000);
                     }}
 
                     // Crear múltiples copos de nieve
-                    setInterval(createSnowflake, 300);
+                    setInterval(createSnowflake, 200);
                 }});
             </script>
         </body>
@@ -107,7 +109,8 @@ def avatar(text='', lang='en-US'):
         """
 
         # Renderizar el HTML en Streamlit
-        components.html(html_str, height=300)
+        components.html(html_str, height=600)
     except Exception as e:
         st.error(f"An error occurred: {e}")
+
 
