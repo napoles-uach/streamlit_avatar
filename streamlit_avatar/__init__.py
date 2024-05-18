@@ -29,12 +29,14 @@ def avatar(text='', lang='en-US'):
                     justify-content: center;
                     align-items: center;
                     height: 100vh;
+                    overflow: hidden;
                 }}
                 .avatar {{
                     width: 300px;
                     height: 300px;
                     background-size: cover;
                     animation: waitingAnimation 2s steps(2, end) infinite;
+                    z-index: 10;
                 }}
                 @keyframes waitingAnimation {{
                     {keyframes_waiting}
@@ -42,10 +44,25 @@ def avatar(text='', lang='en-US'):
                 @keyframes speakAnimation {{
                     {keyframes_speaking}
                 }}
+                .snowflake {{
+                    position: absolute;
+                    top: -10px;
+                    width: 10px;
+                    height: 10px;
+                    background: white;
+                    border-radius: 50%;
+                    opacity: 0.8;
+                    animation: fall 10s linear infinite;
+                }}
+                @keyframes fall {{
+                    0% {{ transform: translateY(0); }}
+                    100% {{ transform: translateY(100vh); }}
+                }}
             </style>
         </head>
         <body>
             <div class="avatar" id="avatar"></div>
+            <div id="snowflakes"></div>
             <script>
                 document.addEventListener('DOMContentLoaded', (event) => {{
                     var avatar = document.getElementById("avatar");
@@ -66,6 +83,23 @@ def avatar(text='', lang='en-US'):
                         setTimeout(() => {{ setAnimation('waitingAnimation', 2, 2); }}, 500);
                     }};
                     speechSynthesis.speak(utterance);
+
+                    // Crear copos de nieve
+                    function createSnowflake() {{
+                        var snowflake = document.createElement("div");
+                        snowflake.classList.add("snowflake");
+                        snowflake.style.left = Math.random() * 100 + "vw";
+                        snowflake.style.animationDuration = (Math.random() * 5 + 5) + "s";
+                        document.getElementById("snowflakes").appendChild(snowflake);
+
+                        // Eliminar copo de nieve después de que caiga
+                        setTimeout(() => {{
+                            snowflake.remove();
+                        }}, 10000);
+                    }}
+
+                    // Crear múltiples copos de nieve
+                    setInterval(createSnowflake, 300);
                 }});
             </script>
         </body>
@@ -76,3 +110,4 @@ def avatar(text='', lang='en-US'):
         components.html(html_str, height=300)
     except Exception as e:
         st.error(f"An error occurred: {e}")
+
