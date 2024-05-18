@@ -78,7 +78,7 @@ def avatar(text='', lang='en-US'):
                     var utterance = new SpeechSynthesisUtterance(texto);
                     utterance.lang = "{lang}"; // Configurar el idioma deseado
                     utterance.onstart = function(event) {{
-                        setAnimation('speakAnimation', 2, 10);
+                        setAnimation('speakAnimation', 5, 10);
                     }};
                     utterance.onend = function(event) {{
                         setTimeout(() => {{ setAnimation('waitingAnimation', 2, 2); }}, 100);
