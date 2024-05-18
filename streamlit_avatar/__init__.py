@@ -22,8 +22,8 @@ def avatar(text='', lang='en-US'):
             <title>Animated Speaking Avatar</title>
             <style>
                 body {{
-                    background: black;
-                    color: white;
+                    background: white;
+                    color: black;
                     font-family: Arial, sans-serif;
                     display: flex;
                     justify-content: center;
@@ -50,21 +50,20 @@ def avatar(text='', lang='en-US'):
                 document.addEventListener('DOMContentLoaded', (event) => {{
                     var avatar = document.getElementById("avatar");
 
-                    function setAnimation(animationName) {{
+                    function setAnimation(animationName, duration, steps) {{
                         avatar.style.animation = 'none'; // Detener la animación actual
-                        requestAnimationFrame(() => {{
-                            avatar.style.animation = `${{animationName}} 2s steps(5, end) infinite`;
-                        }});
+                        void avatar.offsetWidth; // Reiniciar el flujo de CSS
+                        avatar.style.animation = `${{animationName}} ${{duration}}s steps(${{steps}}, end) infinite`;
                     }}
 
                     var texto = `{texto_usuario}`;
                     var utterance = new SpeechSynthesisUtterance(texto);
                     utterance.lang = "{lang}"; // Configurar el idioma deseado
                     utterance.onstart = function(event) {{
-                        setAnimation('speakAnimation');
+                        setAnimation('speakAnimation', 2, 10);
                     }};
                     utterance.onend = function(event) {{
-                        setTimeout(() => {{ setAnimation('waitingAnimation'); }}, 500);
+                        setTimeout(() => {{ setAnimation('waitingAnimation', 2, 2); }}, 500);
                     }};
                     speechSynthesis.speak(utterance);
                 }});
