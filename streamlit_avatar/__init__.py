@@ -45,7 +45,7 @@ def avatar(text='',lang='en-US'):
                     var avatar = document.getElementById("avatar");
                     avatar.style.animation = "none"; // Reinicia la animación
                     setTimeout(() => {{
-                        avatar.style.animation = "speakAnimation 2s steps(10, end) infinite";
+                        avatar.style.animation = "speakAnimation 2s steps(5, end) infinite";
                     }}, 50);
 
                     var texto = `{texto_usuario}`;
