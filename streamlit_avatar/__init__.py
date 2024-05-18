@@ -36,7 +36,7 @@ def avatar(text='', lang='en-US'):
                     height: 300px;
                     background-size: cover;
                     animation: waitingAnimation 2s steps(2, end) infinite;
-                    z-index: 10;
+                    z-index: 1;
                 }}
                 @keyframes waitingAnimation {{
                     {keyframes_waiting}
@@ -53,6 +53,7 @@ def avatar(text='', lang='en-US'):
                     border-radius: 50%;
                     opacity: 0.8;
                     animation: fall linear infinite;
+                    z-index: 2;
                 }}
                 @keyframes fall {{
                     0% {{ transform: translateY(0); opacity: 0.8; }}
@@ -61,8 +62,8 @@ def avatar(text='', lang='en-US'):
             </style>
         </head>
         <body>
-            <div class="avatar" id="avatar"></div>
             <div id="snowflakes"></div>
+            <div class="avatar" id="avatar"></div>
             <script>
                 document.addEventListener('DOMContentLoaded', (event) => {{
                     var avatar = document.getElementById("avatar");
@@ -112,5 +113,4 @@ def avatar(text='', lang='en-US'):
         components.html(html_str, height=600)
     except Exception as e:
         st.error(f"An error occurred: {e}")
-
 
