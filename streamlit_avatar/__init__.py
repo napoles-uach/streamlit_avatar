@@ -12,7 +12,7 @@ def avatar(text='', lang='en-US'):
             100% { background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_closed_eyes.png'); }
         """
 
-        keyframes_speaking = "".join([f"{i*11}% {{background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_{i}.png');}}\n" for i in range(11)])
+        keyframes_speaking = "".join([f"{i*10}% {{ background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_{i}.png'); }}\n" for i in range(10)])
 
         # Construcción del HTML para el avatar animado.
         html_str = f"""
@@ -35,7 +35,7 @@ def avatar(text='', lang='en-US'):
                     width: 300px;
                     height: 300px;
                     background-size: cover;
-                    animation: waitingAnimation 2s steps(2, end) infinite;
+                    animation: waitingAnimation 3s steps(3, end) infinite;
                     z-index: 1;
                 }}
                 @keyframes waitingAnimation {{
@@ -47,11 +47,7 @@ def avatar(text='', lang='en-US'):
                 .snowflake {{
                     position: absolute;
                     top: -10px;
-                    width: 10px;
-                    height: 10px;
-                    background: white;
-                    border-radius: 50%;
-                    opacity: 0.8;
+                    font-size: 24px; /* Tamaño de la hojuela de nieve */
                     animation: fall linear infinite;
                     z-index: 2;
                 }}
@@ -78,10 +74,10 @@ def avatar(text='', lang='en-US'):
                     var utterance = new SpeechSynthesisUtterance(texto);
                     utterance.lang = "{lang}"; // Configurar el idioma deseado
                     utterance.onstart = function(event) {{
-                        setAnimation('speakAnimation', 2, 10);
+                        setAnimation('speakAnimation', texto.length / 10, 10); // Ajustar duración basado en el texto
                     }};
                     utterance.onend = function(event) {{
-                        setTimeout(() => {{ setAnimation('waitingAnimation', 2, 2); }}, 500);
+                        setTimeout(() => {{ setAnimation('waitingAnimation', 3, 3); }}, 500);
                     }};
                     speechSynthesis.speak(utterance);
 
@@ -89,10 +85,9 @@ def avatar(text='', lang='en-US'):
                     function createSnowflake() {{
                         var snowflake = document.createElement("div");
                         snowflake.classList.add("snowflake");
+                        snowflake.textContent = '❄️'; // Usar emoji de hojuela de nieve
                         snowflake.style.left = Math.random() * 100 + "vw";
                         snowflake.style.animationDuration = (Math.random() * 5 + 5) + "s";
-                        snowflake.style.width = (Math.random() * 5 + 5) + "px";
-                        snowflake.style.height = snowflake.style.width;
                         document.getElementById("snowflakes").appendChild(snowflake);
 
                         // Eliminar copo de nieve después de que caiga
@@ -113,4 +108,3 @@ def avatar(text='', lang='en-US'):
         components.html(html_str, height=600)
     except Exception as e:
         st.error(f"An error occurred: {e}")
-
