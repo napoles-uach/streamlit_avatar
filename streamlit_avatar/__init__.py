@@ -8,7 +8,7 @@ def avatar(text='',lang='en-US'):
         texto_usuario = text
 
         # Generación de los keyframes para la animación CSS.
-        keyframes = "".join([f"{i*5}% {{background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_{i}.png');}}\n" for i in range(5)])
+        keyframes = "".join([f"{i*10}% {{background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/artic_{i}.png');}}\n" for i in range(10)])
 
         #keyframes = "".join([f"{i*10}% {{background-image: url('https://raw.githubusercontent.com/napoles-uach/streamlit_avatar/main/robot{i+1}.png');}}\n" for i in range(10)])
 
